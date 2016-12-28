@@ -22,10 +22,15 @@ Django's primary goal is to ease the creation of complex, database-driven websit
 
 In our project we scraping data from an online basketball database website http://www.basketball-reference.com, and use the data to populate our own database. Eventually we will implement analysis method to evaluate the data, and generate tables and graphs for visualization purpose. 
 
+#Parsing Tools
+
+In our project we use [BeautifulSoup](https://www.crummy.com/software/BeautifulSoup) to parse static web source and combine [Selenium](http://www.seleniumhq.org) and [PhantomJS](http://phantomjs.org) to scrape dynamic webpage. 
+
+
 #How to install the project
 
-Set up a database
-=================
+###Set up a database
+
 
 OS X.  
 The recommended way for installing MySQL on OS X is to use the OS X installer package. See [Installing MySQL on OS X Using Native Packages](http://dev.mysql.com/doc/refman/5.7/en/osx-installation-pkg.html) on how to download and run the installer package, and how to start the MySQL server afterward. 
@@ -33,8 +38,8 @@ The recommended way for installing MySQL on OS X is to use the OS X installer pa
 Detailed information regarding installation on OS X can be found in [Installing MySQL on OS X](http://dev.mysql.com/doc/refman/5.7/en/osx-installation.html).
 
 
-Install Django
-==============
+###Install Django
+
 
 Step 1: Verify that you have Python on your computer
 

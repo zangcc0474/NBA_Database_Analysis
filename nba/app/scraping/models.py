@@ -1,13 +1,20 @@
 
 class Game(object):
+
+	# four_Factors_tile = ["Pace","eFG%","TOV%","ORB%","FT/FGA","ORtg"]
 	"""docstring for Game"""
-	def __init__(self, gameId, date=None,host="",guest="",host_score=-1,guest_score=-1):
+	def __init__(self, gameId, date=None,host=None,guest=None,host_score=-1,guest_score=-1,host_Basic_Stats={},host_Advanced_Stats={},guest_Basic_Stats={},guest_Advanced_Stats={}):
 		self.id= gameId
 		self.date = date
 		self.host = host
 		self.guest = guest
 		self.host_score = host_score
 		self.guest_score = guest_score
+		self.host_Basic_Stats = host_Basic_Stats
+		self.host_Advanced_Stats = host_Advanced_Stats
+		self.guest_Basic_Stats = guest_Basic_Stats
+		self.guest_Advanced_Stats = guest_Advanced_Stats
+
 
 	def setData(self,attr,data):
 		# check valid
@@ -47,15 +54,32 @@ class People(object):
 	def __init__(self, peopleId,name=""):
 		self.id = peopleId
 		self.name = name
-	def setName(self,name):
-		self.name = name
-	def getName(self):
-		return self.name
+
+	# Override equal method
+	def __eq__(self, other):
+		if isinstance(other,People):
+			return self.peopleId == other.peopleId
+		return NotImplemented
+	def __ne__(self,other):
+		result = self.__eq__(other)
+		if result is NotImplemented:
+			return result
+		return not result
+
+	def setData(self,attr,data):
+		# check valid
+		setattr(self,attr,data)
+	def getData(self,attr):
+		return getattr(self,attr,None)
 
 
-class player(People):
-	def __init__(self,peopleId):
-		super(self,peopleId).__init__()
+class Player(People):
+	def __init__(self,playerId,name="",game_basic_stats={},playerURL="",game_adv_stats={}):
+		super(Player,self).__init__(playerId,name)
+		self.game_basic_stats = game_basic_stats
+		self.game_adv_stats = game_adv_stats
+		self.playerURL = playerURL
+
 	
 
 
@@ -69,10 +93,11 @@ class Team(object):
 		self.playerList = playerList
 		self.imageURL = imageURl
 		self.teamURL = teamURL
-	def setName(self,name):
-		self.name = name
-	def getName(self):
-		return self.name
+	def setData(self,attr,data):
+		# check valid
+		setattr(self,attr,data)
+	def getData(self,attr):
+		return getattr(self,attr,None)
 
 
    	# def setLocation(self,location):
